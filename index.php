@@ -14,7 +14,7 @@ $bot->command('start', function ($message) use ($bot) {
 
 // команда для помощи
 $bot->command('help', function ($message) use ($bot) {
-    $answer = "List of commands:\n/danbooru [picNumber] - top images for today from danbooru\n/reddit [picNumber] [topic] - top images for today in the given topic";
+    $answer = "List of commands:\n\n/danbooru [picNumber] - top images for today from danbooru\n\n/reddit [picNumber] [topic] - top images for today in the given topic";
     $bot->sendMessage($message->getChat()->getId(),$answer);
 });
 
@@ -35,14 +35,17 @@ $bot->command('reddit', function ($message) use ($bot) {
     	$bot->sendMessage($message->getChat()->getId(),$answer);
     } else {
     	$paramsList = explode(" ", $command);
-    	if (count($paramsList == 2)) {
-    		$picsNumber == $paramsList[0];
-    		$topic = $paramsList[1];
-    		parseReddit($bot,$message->getChat()->getId(),$picsNumber,$topic);
-    	} else {
-    		$answer = "Specify number of pics to show and topic\nafter the command: ex.: /reddit 5 memes\ntype /help reddit for more info";
-    		$bot->sendMessage($message->getChat()->getId(),$answer);
-    	}
+    	foreach ($paramsList as $param) {
+    	 	$bot->sendMessage($message->getChat()->getId(),$param);
+    	 }
+    	// if (count($paramsList == 2)) {
+    	// 	$picsNumber == $paramsList[0];
+    	// 	$topic = $paramsList[1];
+    	// 	parseReddit($bot,$message->getChat()->getId(),$picsNumber,$topic);
+    	// } else {
+    	// 	$answer = "Specify number of pics to show and topic\nafter the command: ex.: /reddit 5 memes\ntype /help reddit for more info";
+    	// 	$bot->sendMessage($message->getChat()->getId(),$answer);
+    	// }
 	}
 });
 
