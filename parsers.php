@@ -1,7 +1,7 @@
 <?php
 
-function parseDanbooru($bot,$chatID) {
-	$bot->sendMessage($chatID, "JJJ");
+function parseDanbooru($bot,$chatID,$numPosts) {
+	$bot->sendMessage($chatID,$numPosts);
 	// $doc = new DOMDocument();
 	// $doc->loadHTMLFile('https://danbooru.donmai.us/explore/posts/popular');
 	// $links = array();
