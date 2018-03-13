@@ -1,7 +1,7 @@
 <?php
 
 require_once "vendor/autoload.php";
-//require_once "parsers.php";
+require_once "parsers.php";
 $token = "564648331:AAESJurFm1Ail3NVtXz8gs85mEvyf_807D8";
 
 $bot = new \TelegramBot\Api\Client($token);
@@ -20,10 +20,8 @@ $bot->command('help', function ($message) use ($bot) {
 });
 
 $bot->command('pic', function ($message) use ($bot) {
-    $hrefs = parseDanbooru(5);
-    foreach ($hrefs as $href) {
-    	$bot->sendPhoto($message->getChat()->getId(), $href);
-    }
+	$posts = 10;
+    $bot->sendMessage($message->getChat()->getId(), parseDanbooru(10));
 });
 
 $bot->run();
