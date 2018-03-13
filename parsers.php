@@ -1,5 +1,7 @@
 <?php
 
+require_once "bot.php";
+
 function parseDanbooru($posts,$bot,$chatID) {
 	$bot->sendMessage($chatID, parseDanbooru(10));
 	// $doc = new DOMDocument();
