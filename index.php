@@ -34,7 +34,7 @@ $bot->command('reddit', function ($message) use ($bot) {
     	$answer = "Specify number of pics to show and topic\nafter the command: ex.: /reddit 5 memes\ntype /help reddit for more info";
     	$bot->sendMessage($message->getChat()->getId(),$answer);
     } else {
-    	$paramsList = explode(" ", $command);
+    	$paramsList = explode(" ", $params);
     	foreach ($paramsList as $param) {
     	 	$bot->sendMessage($message->getChat()->getId(),$param);
     	 }
