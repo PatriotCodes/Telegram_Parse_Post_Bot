@@ -50,6 +50,8 @@ function parseReddit($bot,$chatID,$posts,$topic,$order) {
 				if (strpos($href, 'i.imgur') !== true) {
 					if (strpos($href, '.img') !== false) {
 						$bot->sendPhoto($chatID,$href);
+					} else {
+						$bot->sendMessage($chatID,$href);
 					}
 				}
 				else if (strpos($href,'.gifv') !== false) {
