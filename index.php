@@ -30,14 +30,13 @@ $bot->command('danbooru', function ($message) use ($bot) {
 
 $bot->command('reddit', function ($message) use ($bot) {
 	$params = str_replace('/reddit ', '', $message->getText());
+	$answer = "Specify number of pics to show and topic,\n you can also specify order\nafter the command: ex.: /reddit 5 memes order\ntype /help reddit for more info";
     if ($params == '/reddit') {
-    	$answer = "Specify number of pics to show and topic\nafter the command: ex.: /reddit 5 memes\ntype /help reddit for more info";
     	$bot->sendMessage($message->getChat()->getId(),$answer);
     } else {
     	$paramsList = explode(" ", $params);
     	if (count($paramsList) > 1) {
     		if(!is_numeric($paramsList[0])) {
-    			$answer = "Specify number of pics to show and topic,\n you can also specify order\nafter the command: ex.: /reddit 5 memes order\ntype /help reddit for more info";
     			$bot->sendMessage($message->getChat()->getId(),$answer);
     		} else {
     			$picsNumber = intval($paramsList[0]);
@@ -49,7 +48,6 @@ $bot->command('reddit', function ($message) use ($bot) {
 				parseReddit($bot,$message->getChat()->getId(),$picsNumber,$topic,$order);
 			}
     	} else {
-    		$answer = "Specify number of pics to show and topic\nafter the command: ex.: /reddit 5 memes\ntype /help reddit for more info";
     		$bot->sendMessage($message->getChat()->getId(),$answer);
     	}
 	}
