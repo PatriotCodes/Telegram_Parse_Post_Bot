@@ -21,7 +21,7 @@ $bot->command('help', function ($message) use ($bot) {
 
 $bot->command('danbooru', function ($message) use ($bot) {
     $param = str_replace('/danbooru ', '', $message->getText());
-    if (empty($param)) {
+    if ($param == '') {
     	$answer = 'Specify number of pics
     	to show after command:
     	ex.: /danooru 5';
