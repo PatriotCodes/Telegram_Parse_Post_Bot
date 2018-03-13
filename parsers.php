@@ -3,7 +3,7 @@
 require_once "bot.php";
 
 function parseDanbooru($posts,$chatID) {
-	$bot->sendMessage($chatID, $posts);
+	$bot->sendMessage($bot->getChat()->getId(), $posts);
 	// $doc = new DOMDocument();
 	// $doc->loadHTMLFile('https://danbooru.donmai.us/explore/posts/popular');
 	// $links = array();
