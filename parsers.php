@@ -46,13 +46,13 @@ function parseReddit($bot,$chatID,$posts) {
 		}
 		foreach($links as $href) {
 			if (substr($href,0,5) == 'https') {
-				if (!strpos($href,'.gif')) {
-					$bot->sendDocument($chatID,$href);
-				}
 				if (!strpos($href, '.img')) {
 					$bot->sendMessage($chatID,'https://www.reddit.com'.$href);
 				} else {
 					$bot->sendPhoto($chatID,$href);
+					if (!strpos($href,'.gif')) {
+					$bot->sendDocument($chatID,$href);
+					}
 				}
 			}
 			// 	//} else {
