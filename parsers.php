@@ -2,7 +2,8 @@
 
 function parseDanbooru($bot,$chatID,$posts) {
 	$doc = new DOMDocument();
-	$doc->loadHTMLFile('https://danbooru.donmai.us/explore/posts/popular');
+	//$doc->loadHTMLFile('https://danbooru.donmai.us/explore/posts/popular');
+	$doc->loadHTMLFile('https://danbooru.donmai.us/');
 	$links = array();
 	foreach($doc->getElementsByTagName('a') as $link) {
 		if (substr($link->getAttribute('href'),0,7) == '/posts/') {

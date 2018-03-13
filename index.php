@@ -8,20 +8,20 @@ $bot = new \TelegramBot\Api\Client($token);
 
 // команда для start
 $bot->command('start', function ($message) use ($bot) {
-    $answer = 'Добро пожаловать!';
+    $answer = 'Greetings! You can always type /help if you feel frustrated.';
     $bot->sendMessage($message->getChat()->getId(),$answer);
 });
 
 // команда для помощи
 $bot->command('help', function ($message) use ($bot) {
-    $answer = "List of commands:\n\n/danbooru [picNumber] - top images for today from danbooru\n\n/reddit [picNumber] [topic] - top images for today in the given topic";
+    $answer = "List of commands:\nparameters in square brackets are obligatory! For more info on each command type:\n/help [command]\n\n/danbooru [picNumber] (popular) (date) - top images for today from danbooru\n\n/reddit [picNumber] [topic] (order) - top images for today in the given topic";
     $bot->sendMessage($message->getChat()->getId(),$answer);
 });
 
 $bot->command('danbooru', function ($message) use ($bot) {
     $param = str_replace('/danbooru ', '', $message->getText());
+    $answer = "Specify number of pics to show\nafter the command: ex.: /danbooru 5\ntype /help danbooru for more info";
     if ($param == '/danbooru') {
-    	$answer = "Specify number of pics to show\nafter the command: ex.: /danbooru 5\ntype /help danbooru for more info";
     	$bot->sendMessage($message->getChat()->getId(),$answer);
     } else {
     	parseDanbooru($bot,$message->getChat()->getId(),$param);
@@ -40,6 +40,10 @@ $bot->command('reddit', function ($message) use ($bot) {
     			$bot->sendMessage($message->getChat()->getId(),$answer);
     		} else {
     			$picsNumber = intval($paramsList[0]);
+    			if ($picsNumber > 20) {
+    				$picsNumber = 20;
+    				$bot->sendMessage($message->getChat()->getId(),'Max picsNumber is 20! Set to max.');
+    			}
     			$topic = $paramsList[1];
     			$order = 'new';
     			if (count($paramsList) > 2) {
