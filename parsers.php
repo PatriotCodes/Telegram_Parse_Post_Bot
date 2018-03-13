@@ -45,17 +45,18 @@ function parseReddit($bot,$chatID,$posts,$topic,$order) {
 			}
 		}
 		foreach($links as $href) {
+			$bot->sendMessage($chatID,'link:'.$href);
 			if (substr($href,0,5) == 'https') {
-				if (strpos($href, 'i.imgur') !== true) {
-					if (strpos($href, '.img') !== false) {
-						$bot->sendPhoto($chatID,$href);
-					} else {
+				if (strpos($href, '.img') !== false) {
+					if (strpos($href, 'i.imgur') !== false) {
 						$bot->sendMessage($chatID,$href);
+					} else {
+						$bot->sendPhoto($chatID,$href);
 					}
 				}
 				else if (strpos($href,'.gifv') !== false) {
 					$bot->sendMessage($chatID,$href);
-				} else if (strpos($href,'.gif') !== false) {
+				} else if  (strpos($href,'.gif') !== false) {
 					$bot->sendDocument($chatID,$href);
 				} else {
 					$bot->sendMessage($chatID,$href);
