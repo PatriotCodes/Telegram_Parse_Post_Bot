@@ -17,6 +17,11 @@ $bot->command('help', function ($message) use ($bot) {
     $bot->sendMessage($message->getChat()->getId(), $answer);
 });
 
+$bot->command('pic', function ($message) use ($bot) {
+    $answer = 'https://danbooru.donmai.us/data/sample/__ichigo_and_zero_two_darling_in_the_franxx_drawn_by_gorgeous_mushroom__sample-b7085044950366ca98011863f910eecd.jpg';
+    $bot->sendPhoto($message->getChat()->getId(), $answer);
+});
+
 $bot->run();
 
 ?>
