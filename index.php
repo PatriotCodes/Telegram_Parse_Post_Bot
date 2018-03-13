@@ -21,7 +21,7 @@ $bot->command('help', function ($message) use ($bot) {
 
 $bot->command('pic', function ($message) use ($bot) {
 	$posts = 10;
-    $bot->sendMessage($message->getChat()->getId(), parseDanbooru(10));
+    parseDanbooru($posts,$bot,$message->getChat()->getId());
 });
 
 $bot->run();
