@@ -48,7 +48,7 @@ function parseReddit($bot,$chatID,$posts,$topic,$order) {
 			if (substr($href,0,5) == 'https') {
 				if (strpos($href, '.img') !== false) {
 					if (strpos($href, 'i.imgur') !== false) {
-						$bot->sendMessage($chatID,$href);
+						$bot->sendVideo($chatID,$href);
 					} else {
 						$bot->sendPhoto($chatID,$href);
 					}
