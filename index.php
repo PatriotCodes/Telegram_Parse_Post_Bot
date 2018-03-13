@@ -30,7 +30,7 @@ $bot->command('danbooru', function ($message) use ($bot) {
 
 $bot->command('reddit', function ($message) use ($bot) {
 	$params = str_replace('/reddit ', '', $message->getText());
-	$answer = "Specify number of pics to show and topic,\n you can also specify order\nafter the command: ex.: /reddit 5 memes order\ntype /help reddit for more info";
+	$answer = "Specify number of pics to show and\ntopic, after the command:\n(you can specify order if you wish)\nex.: /reddit 5 memes order\ntype /help reddit for more info";
     if ($params == '/reddit') {
     	$bot->sendMessage($message->getChat()->getId(),$answer);
     } else {
