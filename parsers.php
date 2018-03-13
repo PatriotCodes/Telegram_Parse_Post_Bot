@@ -49,7 +49,7 @@ function parseReddit($bot,$chatID,$posts,$topic,$order) {
 					$bot->sendPhoto($chatID,$href);
 				}
 				else if (strpos($href,'.gif') !== false) {
-					$bot->sendDocument($chatID,$href);
+					$bot->sendMessage($chatID,$href);
 				} else {
 					$bot->sendMessage($chatID,$href);
 				}
