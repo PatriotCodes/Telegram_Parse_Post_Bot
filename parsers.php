@@ -49,8 +49,10 @@ function parseReddit($bot,$chatID,$posts) {
 				if (strpos($href, '.img') !== false) {
 					$bot->sendPhoto($chatID,$href);
 				}
-				if (strpos($href,'.gif') !== false) {
+				else if (strpos($href,'.gif') !== false) {
 					$bot->sendDocument($chatID,$href);
+				} else {
+					$bot->sendMessage($chatID,$href);
 				}
 			}
 			$bot->sendMessage($chatID,'https://www.reddit.com'.$href);
