@@ -14,7 +14,7 @@ $bot->command('start', function ($message) use ($bot) {
 
 // команда для помощи
 $bot->command('help', function ($message) use ($bot) {
-    $answer = "List of commands:\nparameters in square brackets are obligatory! For more info on each command type:\n/help [command]\n\n/danbooru [picNumber] (popular) (date) - top images for today from danbooru\n\n/reddit [picNumber] [topic] (order) - top images for today in the given topic";
+    $answer = "List of commands:\nparameters in square brackets are obligatory! For more info on each command type:\n/help [command]\n\n/danbooru [picNumber] (popular) (date) - top images for given date from danbooru, if wasnt specified - last images \n\n/reddit [picNumber] [topic] (order) - top images for today in the given topic";
     $bot->sendMessage($message->getChat()->getId(),$answer);
 });
 
