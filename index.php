@@ -9,19 +9,26 @@ $bot = new \TelegramBot\Api\Client($token);
 // команда для start
 $bot->command('start', function ($message) use ($bot) {
     $answer = 'Добро пожаловать!';
-    $bot->sendMessage($message->getChat()->getId(), $answer);
+    $bot->sendMessage($message->getChat()->getId(),$answer);
 });
 
 // команда для помощи
 $bot->command('help', function ($message) use ($bot) {
     $answer = 'Команды:
 /help - вывод справки';
-    $bot->sendMessage($message->getChat()->getId(), $answer);
+    $bot->sendMessage($message->getChat()->getId(),$answer);
 });
 
 $bot->command('danbooru', function ($message) use ($bot) {
     $param = str_replace('/danbooru ', '', $message->getText());
-    parseDanbooru($bot,$message->getChat()->getId(),$param);
+    if (empty($param)) {
+    	$message = 'Specify number of pics
+    	to show after command:
+    	ex.: /danooru 5';
+    	$bot->sendMessage($message->getChat()->getId(),$message);
+    } else {
+    	parseDanbooru($bot,$message->getChat()->getId(),$param);
+	}
 });
 
 $bot->command('reddit', function ($message) use ($bot) {
