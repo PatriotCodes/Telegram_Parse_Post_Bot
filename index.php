@@ -36,9 +36,14 @@ $bot->command('reddit', function ($message) use ($bot) {
     } else {
     	$paramsList = explode(" ", $params);
     	if (count($paramsList) == 2) {
-    		$picsNumber == $paramsList[0];
-    		$topic = $paramsList[1];
-			parseReddit($bot,$message->getChat()->getId(),$picsNumber,$topic);
+    		if(!is_numeric($paramsList[0])) {
+    			$answer = "Specify number of pics to show and topic\nafter the command: ex.: /reddit 5 memes\ntype /help reddit for more info";
+    			$bot->sendMessage($message->getChat()->getId(),$answer);
+    		} else {
+    			$picsNumber == $paramsList[0];
+    			$topic = $paramsList[1];
+				parseReddit($bot,$message->getChat()->getId(),intval($picsNumber),$topic);
+			}
     	} else {
     		$answer = "Specify number of pics to show and topic\nafter the command: ex.: /reddit 5 memes\ntype /help reddit for more info";
     		$bot->sendMessage($message->getChat()->getId(),$answer);
