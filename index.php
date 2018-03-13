@@ -21,11 +21,11 @@ $bot->command('help', function ($message) use ($bot) {
 
 $bot->command('danbooru', function ($message) use ($bot) {
     $param = str_replace('/danbooru ', '', $message->getText());
-    if ($param == '') {
-    	$message = 'Specify number of pics
+    if (empty($param)) {
+    	$answer = 'Specify number of pics
     	to show after command:
     	ex.: /danooru 5';
-    	$bot->sendMessage($message->getChat()->getId(),$message);
+    	$bot->sendMessage($message->getChat()->getId(),$answer);
     } else {
     	parseDanbooru($bot,$message->getChat()->getId(),$param);
 	}
