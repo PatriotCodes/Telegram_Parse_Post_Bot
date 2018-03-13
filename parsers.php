@@ -54,8 +54,8 @@ function parseReddit($bot,$chatID,$posts,$topic,$order) {
 					}
 				}
 				else if (strpos($href,'.gifv') !== false) {
-					$bot->sendVideo($chatID,$href);
-				} else if  (strpos($href,'.gif') !== false) {
+					$bot->sendMessage($chatID,$href);
+				} else if (strpos($href,'.gif') !== false) {
 					$bot->sendDocument($chatID,$href);
 				} else {
 					$bot->sendMessage($chatID,$href);
