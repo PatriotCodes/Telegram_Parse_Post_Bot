@@ -1,6 +1,7 @@
 <?php
 
 require_once "vendor/autoload.php";
+require_once "parsers.php"
 $token = "564648331:AAESJurFm1Ail3NVtXz8gs85mEvyf_807D8";
 
 $bot = new \TelegramBot\Api\Client($token);
@@ -18,7 +19,7 @@ $bot->command('help', function ($message) use ($bot) {
 });
 
 $bot->command('pic', function ($message) use ($bot) {
-    $answer = 'https://danbooru.donmai.us/data/sample/__ichigo_and_zero_two_darling_in_the_franxx_drawn_by_gorgeous_mushroom__sample-b7085044950366ca98011863f910eecd.jpg';
+    $answer = parseDanbooru();
     $bot->sendPhoto($message->getChat()->getId(), $answer);
 });
 
