@@ -14,15 +14,14 @@ $bot->command('start', function ($message) use ($bot) {
 
 // команда для помощи
 $bot->command('help', function ($message) use ($bot) {
-    $answer = 'Команды:
-/help - вывод справки';
+    $answer = "List of commands:\n/danbooru [picNumber] - top images for today from danbooru\n/reddit [picNumber] [topic] - top images for today in the given topic";
     $bot->sendMessage($message->getChat()->getId(),$answer);
 });
 
 $bot->command('danbooru', function ($message) use ($bot) {
     $param = str_replace('/danbooru ', '', $message->getText());
     if ($param == '/danbooru') {
-    	$answer = 'Specify number of pics to show\nafter the command: ex.: /danbooru 5\ntype /help danbooru for more info';
+    	$answer = "Specify number of pics to show\nafter the command: ex.: /danbooru 5\ntype /help danbooru for more info";
     	$bot->sendMessage($message->getChat()->getId(),$answer);
     } else {
     	parseDanbooru($bot,$message->getChat()->getId(),$param);
@@ -30,13 +29,20 @@ $bot->command('danbooru', function ($message) use ($bot) {
 });
 
 $bot->command('reddit', function ($message) use ($bot) {
-	$param = str_replace('/reddit ', '', $message->getText());
-    if ($param == '/reddit') {
-    	$answer = 'Specify number of pics to show 
-    after command: ex.: /reddit 5';
+	$params = str_replace('/reddit ', '', $message->getText());
+    if ($params == '/reddit') {
+    	$answer = "Specify number of pics to show and topic\nafter the command: ex.: /reddit 5 memes\ntype /help reddit for more info";
     	$bot->sendMessage($message->getChat()->getId(),$answer);
     } else {
-    	parseReddit($bot,$message->getChat()->getId(),$param);
+    	$paramsList = explode(" ", $command);
+    	if (count($paramsList == 2)) {
+    		$picsNumber == $paramsList[0];
+    		$topic = $paramsList[1];
+    		parseReddit($bot,$message->getChat()->getId(),$picsNumber,$topic);
+    	} else {
+    		$answer = "Specify number of pics to show and topic\nafter the command: ex.: /reddit 5 memes\ntype /help reddit for more info";
+    		$bot->sendMessage($message->getChat()->getId(),$answer);
+    	}
 	}
 });
 

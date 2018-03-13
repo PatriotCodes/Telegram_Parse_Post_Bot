@@ -25,9 +25,8 @@ function parseDanbooru($bot,$chatID,$posts) {
 	}
 }
 
-function parseReddit($bot,$chatID,$posts) {
+function parseReddit($bot,$chatID,$posts,$topic) {
 	$doc = new DOMDocument();
-	$topic = 'animemes';
 	$doc->loadHTMLFile('https://www.reddit.com/r/'.$topic.'/top/');
 	$links = array(); 
 		foreach($doc->getElementsByTagName('a') as $link) {
