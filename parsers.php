@@ -47,9 +47,9 @@ function parseReddit($bot,$chatID,$posts) {
 		foreach($links as $href) {
 			if (substr($href,0,5) == 'https') {
 				if (!strpos($href, '.img')) {
-					$bot->sendMessage($chatID,'https://www.reddit.com'.$href);
-				} else {
 					$bot->sendPhoto($chatID,$href);
+				} else {
+					$bot->sendMessage($chatID,'https://www.reddit.com'.$href);
 					// if (!strpos($href,'.gif')) {
 					// 	$bot->sendDocument($chatID,$href);
 					// }
