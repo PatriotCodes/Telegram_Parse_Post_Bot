@@ -52,9 +52,7 @@ function parseReddit($bot,$chatID,$posts) {
 				if (!strpos($href,'.gif')) {
 					$bot->sendDocument($chatID,$href);
 				}
-			} else {
-				$bot->sendMessage($chatID,'https://www.reddit.com'.$href);
-			}
+			$bot->sendMessage($chatID,'https://www.reddit.com'.$href);
 			// 	//} else {
 			// 	//	$this->returnGIF($href);
 			// 	//}
@@ -69,6 +67,6 @@ function parseReddit($bot,$chatID,$posts) {
 			// 	}
 			// }
 		}
-}
+	}
 
 ?>
