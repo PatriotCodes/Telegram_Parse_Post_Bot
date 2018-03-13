@@ -50,9 +50,9 @@ function parseReddit($bot,$chatID,$posts) {
 					$bot->sendMessage($chatID,'https://www.reddit.com'.$href);
 				} else {
 					$bot->sendPhoto($chatID,$href);
-					if (!strpos($href,'.gif')) {
-					$bot->sendDocument($chatID,$href);
-					}
+					// if (!strpos($href,'.gif')) {
+					// 	$bot->sendDocument($chatID,$href);
+					// }
 				}
 			}
 			// 	//} else {
