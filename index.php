@@ -20,8 +20,7 @@ $bot->command('help', function ($message) use ($bot) {
 });
 
 $bot->command('pic', function ($message) use ($bot) {
-    $answer = parseDanbooru();
-    $bot->sendPhoto($message->getChat()->getId(), $answer);
+    parseDanbooru($bot,$message);
 });
 
 $bot->run();
