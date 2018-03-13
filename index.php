@@ -20,7 +20,8 @@ $bot->command('help', function ($message) use ($bot) {
 });
 
 $bot->command('danbooru', function ($message) use ($bot) {
-    parseDanbooru($bot,$message->getChat()->getId(),10);
+    $param = str_replace('/danbooru ', '', $message->getText());
+    parseDanbooru($bot,$message->getChat()->getId(),$param);
 });
 
 $bot->command('reddit', function ($message) use ($bot) {

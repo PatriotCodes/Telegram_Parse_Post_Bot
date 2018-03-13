@@ -55,7 +55,6 @@ function parseReddit($bot,$chatID,$posts) {
 					$bot->sendMessage($chatID,$href);
 				}
 			} else {
-				//$bot->sendMessage($chatID,'https://www.reddit.com'.$href);
 				$caption = 'https://www.reddit.com'.$href;
 				$doc2 = new DOMDocument();
 				$doc2->loadHTMLFile('https://www.reddit.com'.$href);
@@ -66,16 +65,6 @@ function parseReddit($bot,$chatID,$posts) {
 					}
 				}
 			}
-			// } else {
-			// 	$doc2 = new DOMDocument();
-			// 	$doc2->loadHTMLFile('https://www.reddit.com'.$href);
-			// 	foreach($doc2->getElementsByTagName('a') as $link) {
-			// 		if ($link->getAttribute('class') == 'thumbnail invisible-when-pinned may-blank outbound') {
-			// 			$bot->sendPhoto($chatID,$link->getAttribute('href'));
-			// 			break;
-			// 		}
-			// 	}
-			// }
 		}
 	}
 
