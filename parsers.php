@@ -45,7 +45,7 @@ function parseReddit($bot,$chatID,$posts) {
 			}
 		}
 		foreach($links as $href) {
-			$bot->sendMessage($chatID,$href);
+			$bot->sendMessage($chatID,'https://www.reddit.com'.$href);
 			// if (substr($href,0,5) == 'https') {
 			// 	//if (!strpos($href,'.gif')) {
 			// 	if (!strpos($href, '.img')) {
