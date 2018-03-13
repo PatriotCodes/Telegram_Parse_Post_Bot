@@ -19,9 +19,14 @@ $bot->command('help', function ($message) use ($bot) {
     $bot->sendMessage($message->getChat()->getId(), $answer);
 });
 
-$bot->command('pic', function ($message) use ($bot) {
+$bot->command('danbooru', function ($message) use ($bot) {
     parseDanbooru($bot,$message->getChat()->getId(),10);
 });
+
+$bot->command('reddit', function ($message) use ($bot) {
+    parseReddit($bot,$message->getChat()->getId(),20);
+});
+
 
 $bot->run();
 

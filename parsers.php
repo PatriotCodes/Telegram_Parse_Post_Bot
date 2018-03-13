@@ -26,4 +26,47 @@ function parseDanbooru($bot,$chatID,$posts) {
 	}
 }
 
+function parseReddit($bot,$chatID,$posts) {
+	$doc = new DOMDocument();
+	$topic = 'animemes';
+	$doc->loadHTMLFile('https://www.reddit.com/r/'.$topic.'/top/');
+	$links = array(); 
+		foreach($doc->getElementsByTagName('a') as $link) {
+			if (strcmp($link->getAttribute('rel'),'nofollow next') == 0) {
+				break;
+			}
+			if (strcmp($link->getAttribute('class'),'thumbnail invisible-when-pinned may-blank ') == 0 || 
+					strcmp($link->getAttribute('class'),'thumbnail invisible-when-pinned may-blank outbound') == 0) {
+				if ($posts > 0) {
+					array_push($links,$link->getAttribute('href'));
+					$posts--;
+				} else {
+					break;
+				}
+			}
+		}
+		foreach($links as $href) {
+			if (substr($href,0,5) == 'https') {
+				//if (!strpos($href,'.gif')) {
+				if (!strpos($href, '.img')) {
+					// parse page for img
+				} else {
+					$bot->sendPhoto($chatID,$href);
+				}
+				//} else {
+				//	$this->returnGIF($href);
+				//}
+			} else {
+				$doc2 = new DOMDocument();
+				$doc2->loadHTMLFile('https://www.reddit.com'.$href);
+				foreach($doc2->getElementsByTagName('a') as $link) {
+					if ($link->getAttribute('class') == 'thumbnail invisible-when-pinned may-blank outbound') {
+						$bot->sendPhoto($chatID,$link->getAttribute('href'));
+						break;
+					}
+				}
+			}
+		}
+}
+
 ?>
