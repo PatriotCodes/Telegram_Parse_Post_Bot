@@ -1,7 +1,6 @@
 <?php
 
 function parseDanbooru($bot,$chatID,$posts) {
-	$bot->sendMessage($chatID,$posts);
 	$doc = new DOMDocument();
 	$doc->loadHTMLFile('https://danbooru.donmai.us/explore/posts/popular');
 	$links = array();
@@ -46,26 +45,27 @@ function parseReddit($bot,$chatID,$posts) {
 			}
 		}
 		foreach($links as $href) {
-			if (substr($href,0,5) == 'https') {
-				//if (!strpos($href,'.gif')) {
-				if (!strpos($href, '.img')) {
-					// parse page for img
-				} else {
-					$bot->sendPhoto($chatID,$href);
-				}
-				//} else {
-				//	$this->returnGIF($href);
-				//}
-			} else {
-				$doc2 = new DOMDocument();
-				$doc2->loadHTMLFile('https://www.reddit.com'.$href);
-				foreach($doc2->getElementsByTagName('a') as $link) {
-					if ($link->getAttribute('class') == 'thumbnail invisible-when-pinned may-blank outbound') {
-						$bot->sendPhoto($chatID,$link->getAttribute('href'));
-						break;
-					}
-				}
-			}
+			$bot->sendMessage($chatID,$href);
+			// if (substr($href,0,5) == 'https') {
+			// 	//if (!strpos($href,'.gif')) {
+			// 	if (!strpos($href, '.img')) {
+			// 		// parse page for img
+			// 	} else {
+			// 		$bot->sendPhoto($chatID,$href);
+			// 	}
+			// 	//} else {
+			// 	//	$this->returnGIF($href);
+			// 	//}
+			// } else {
+			// 	$doc2 = new DOMDocument();
+			// 	$doc2->loadHTMLFile('https://www.reddit.com'.$href);
+			// 	foreach($doc2->getElementsByTagName('a') as $link) {
+			// 		if ($link->getAttribute('class') == 'thumbnail invisible-when-pinned may-blank outbound') {
+			// 			$bot->sendPhoto($chatID,$link->getAttribute('href'));
+			// 			break;
+			// 		}
+			// 	}
+			// }
 		}
 }
 
