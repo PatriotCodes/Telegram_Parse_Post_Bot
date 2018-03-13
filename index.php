@@ -20,7 +20,10 @@ $bot->command('help', function ($message) use ($bot) {
 });
 
 $bot->command('pic', function ($message) use ($bot) {
-    parseDanbooru($bot,$message);
+    $hrefs = parseDanbooru(5);
+    foreach ($hrefs as $href) {
+    	$bot->sendPhoto($message->getChat()->getId(), $href);
+    }
 });
 
 $bot->run();
