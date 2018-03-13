@@ -1,6 +1,7 @@
 <?php
 
 function parseDanbooru($bot,$message) {
+	$posts = 4;
 	$doc = new DOMDocument();
 	$doc->loadHTMLFile('https://danbooru.donmai.us/explore/posts/popular');
 	$links = array(); 
