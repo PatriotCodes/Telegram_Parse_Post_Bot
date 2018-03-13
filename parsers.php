@@ -54,8 +54,9 @@ function parseReddit($bot,$chatID,$posts) {
 				} else {
 					$bot->sendMessage($chatID,$href);
 				}
+			} else {
+				$bot->sendMessage($chatID,'https://www.reddit.com'.$href);
 			}
-			$bot->sendMessage($chatID,'https://www.reddit.com'.$href);
 			// 	//} else {
 			// 	//	$this->returnGIF($href);
 			// 	//}
