@@ -22,8 +22,7 @@ $bot->command('help', function ($message) use ($bot) {
 $bot->command('danbooru', function ($message) use ($bot) {
     $param = str_replace('/danbooru ', '', $message->getText());
     if ($param == '/danbooru') {
-    	$answer = 'Specify number of pics to show 
-    after command: ex.: /danbooru 5';
+    	$answer = 'Specify number of pics to show\nafter the command: ex.: /danbooru 5\ntype /help danbooru for more info';
     	$bot->sendMessage($message->getChat()->getId(),$answer);
     } else {
     	parseDanbooru($bot,$message->getChat()->getId(),$param);
