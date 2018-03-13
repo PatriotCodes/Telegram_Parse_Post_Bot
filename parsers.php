@@ -25,9 +25,9 @@ function parseDanbooru($bot,$chatID,$posts) {
 	}
 }
 
-function parseReddit($bot,$chatID,$posts,$topic) {
+function parseReddit($bot,$chatID,$posts,$topic,$order) {
 	$doc = new DOMDocument();
-	$doc->loadHTMLFile('https://www.reddit.com/r/'.$topic.'/top/');
+	$doc->loadHTMLFile('https://www.reddit.com/r/'.$topic.'/'.$order.'/');
 	$links = array(); 
 		foreach($doc->getElementsByTagName('a') as $link) {
 			if (strcmp($link->getAttribute('rel'),'nofollow next') == 0) {
